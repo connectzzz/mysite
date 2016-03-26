@@ -21,8 +21,28 @@ function selectAllItems($link)
     {
         return false;
     }
-    $items=mysqli_fetch_assoc($result);
+    $items=mysqli_fetch_all($result,MYSQLI_ASSOC);
     mysqli_free_result($result);
     return $items;
+}
 
+function saveBasket() // сохраняет корзину с товарами в куки
+{
+    global $basket;
+    $basket=base64_decode(serialize($basket));
+    setcookie('basket',$basket,0x7FFFFFFF);
+}
+
+function basketInit() //создает или загружает в переменную $basket корзину с товарами
+    // , либо создает новую корзину с идентификатором заказа
+
+{
+    global $count,$basket;
+    if(isset($_COOKIE['basket'])){
+        $basket=['orderid'=>uniqid()];
+        saveBasket();
+    }else{
+        $basket=unserialize(base64_decode($_COOKIE['basket']));
+        $count=count($basket)-1;
+    }
 }

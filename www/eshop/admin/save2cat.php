@@ -4,16 +4,27 @@
 	require "../inc/lib.inc.php";
 	require "../inc/config.inc.php";
 
-
-if ($title=$_POST['title']&&$author=$_POST['author']&&
-        $pubyear=$_POST['pubyear']&&$price=$_POST['price'])
+ob_start();
+if ($_POST['title']&&$_POST['author']&&$_POST['pubyear']&&$_POST['price'])
 {
+    $title=$_POST['title'];
+    $author=$_POST['author'];
+    $pubyear=$_POST['pubyear'];
+    $price=$_POST['price'];
 
-    if(addItemToCatalog($title,$author,$pubyear,$price))
+    if(!addItemToCatalog($title,$author,$pubyear,$price,$link))
     {
         echo 'Произошла ошибка при добавлении товара в коталог';
     }else{
-        header("Locarion: add2cat.php");
-        exit;
+       header("Location: add2cat.php");
+       // var_dump($link);
+        //echo $title.'<br>'.$pubyear.'<br>'.$author.'<br>'.$price;
+       exit;
     }
+}else {
+    header("Location: add2cat.php");//не реализованно
+
+
 }
+
+ob_end_flush();

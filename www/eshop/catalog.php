@@ -2,7 +2,6 @@
 	// подключение библиотек
 	require "inc/lib.inc.php";
 	require "inc/config.inc.php";
-
     $goods=selectAllItems($link);// выборка всех товаров
 ?>
 <!DOCTYPE html>
@@ -12,7 +11,7 @@
 	<title>Каталог товаров</title>
 </head>
 <body>
-<p>Товаров в <a href="basket.php">корзине</a>: <?= $count?></p>
+<p>Товаров в <a href="basket.php">корзине</a>: <?=  $count ?></p>
 <table border="1" cellpadding="5" cellspacing="0" width="100%">
 <tr>
 	<th>Название</th>

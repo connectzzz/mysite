@@ -37,13 +37,15 @@ function basketInit() //создает или загружает в переме
     // , либо создает новую корзину с идентификатором заказа
 
 {
-    global $count,$basket;
+    global $count,$basket,$too;
     if(!isset($_COOKIE['basket'])){
         $basket['orderid']=uniqid();
         saveBasket();
+        $too=true;
     }else{
         $basket=unserialize(base64_decode($_COOKIE['basket']));
         $count=count($basket)-1;
+        $too=false;
     }
 }
 
@@ -54,4 +56,28 @@ function add2Basket($id) //которая добавляет товар в ко�
     $basket[$id]=1;
     saveBasket();
 }
+define('DB_HOST','localhost');
+define('DB_LOGIN','root');
+define('DB_PASSWORD','');
+define('DB_NAME','eshop');
+define('ORDERS_LOG','orders.log');
+$basket=[];  // массив для хранения корзины пользователя
+$count=0;    // переменная для хранения количества товаров в корзине пользователя
 
+$link=mysqli_connect(DB_HOST,DB_LOGIN,DB_PASSWORD,DB_NAME);
+if (!$link){
+    echo 'Ошибка подключения: '
+        .mysqli_connect_errno(). ' '
+        .mysqli_connect_error();
+}
+
+$aa=$basket;
+basketInit();
+$coo=$_COOKIE['basket'];
+var_dump($basket);
+echo '<br>';
+var_dump($count);
+echo '<br> ';
+var_dump($aa);
+var_dump(unserialize(base64_decode($coo)));
+echo $too;

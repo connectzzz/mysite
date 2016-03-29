@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="mysite.local" type="JavascriptDebugType" factoryName="JavaScript Debug" nameIsGenerated="true" uri="http://mysite.local">
+    <RunnerSettings RunnerId="JavascriptDebugRunner" />
+    <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+    <method />
+  </configuration>
+</component>

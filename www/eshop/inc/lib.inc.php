@@ -93,3 +93,4 @@ function deleteItemFromBasket($id)// которая удаляет товар и
     unset ($basket[$id]);
     saveBasket();
 }
+

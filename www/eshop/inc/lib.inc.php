@@ -94,3 +94,34 @@ function deleteItemFromBasket($id)// которая удаляет товар и
     saveBasket();
 }
 
+function saveOrder($datetime)//которая пересохраняет товары из корзины в таблицу базы
+//данных orders и принимает в качестве аргумента дату и время заказа
+//в виде временной метки
+{
+    global $link, $basket;
+    $goods = myBasket();
+    $stmt = mysqli_stmt_init($link);
+    $sql = 'INSERT INTO orders (
+                       title,
+                       author,
+                       pubyear,
+                       price,
+                       quantity,
+                       orderid,
+                       datetime)
+        VALUES (?, ?, ?, ?, ?, ?, ?)';
+    if (!mysqli_stmt_prepare($stmt, $sql))
+        return false;
+    foreach($goods as $item)
+    {   mysqli_stmt_bind_param($stmt, "ssiiisi",
+        $item['title'], $item['author'],
+        $item['pubyear'], $item['price'],
+        $item['quantity'], $basket['orderid'],
+        $datetime);
+        mysqli_stmt_execute($stmt);
+    }
+    mysqli_stmt_close($stmt);
+    setcookie('basket',$basket['orderid'],-1000);
+    return true;
+
+}

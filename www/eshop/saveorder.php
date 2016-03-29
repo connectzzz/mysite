@@ -19,6 +19,8 @@ fclose($f);*/
 $path='admin/'.ORDERS_LOG;
 file_put_contents($path, $order, FILE_APPEND);
 
+saveOrder($time);
+
 
 
 

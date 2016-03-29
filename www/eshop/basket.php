@@ -12,9 +12,9 @@
 <body>
 	<h1>Ваша корзина</h1>
 <?php
-if ($count>0)
+if ($count<1)
 {
-    echo ' Корзина пуста! Вернитесь в каталог. ';
+    echo ' Корзина пуста! Вернуться в <a href="catalog.php">каталог</a> ';
 }else{
     ?>
      Вернуться в <a href="catalog.php">каталог</a>
@@ -35,7 +35,8 @@ if ($count>0)
 	$items=myBasket();
     $i=1;
     $sum=0;
-var_dump($items);
+//var_dump($items);
+if ($items):
 foreach ($items as $item):
 ?>
 <tr>
@@ -47,7 +48,10 @@ foreach ($items as $item):
     <td><?=$item['quantity'] ?></td>
     <td><a href="delete_from_basket.php?id=<?=$item['id']?>" > <?='Удалить'?></a></td>
 </tr>
-<?php $sum+=($item['quantity']*$item['price']); endforeach;?>
+<?php $sum+=($item['quantity']*$item['price']);
+endforeach;
+endif;
+?>
 </table>
 
 <p>Всего товаров в корзине на сумму:<?=$sum ?> руб.</p>

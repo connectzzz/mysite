@@ -3,6 +3,7 @@
 	require "inc/lib.inc.php";
 	require "inc/config.inc.php";
     $goods=selectAllItems($link);// выборка всех товаров
+//var_dump($goods);
 ?>
 <!DOCTYPE html>
 <html>

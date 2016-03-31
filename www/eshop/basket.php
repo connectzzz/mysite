@@ -12,7 +12,7 @@
 <body>
 	<h1>Ваша корзина</h1>
 <?php
-if ($count<1)
+if ($count<0.1)
 {
     echo ' Корзина пуста! Вернуться в <a href="catalog.php">каталог</a> ';
 }else{
@@ -35,7 +35,7 @@ if ($count<1)
 	$items=myBasket();
     $i=1;
     $sum=0;
-//var_dump($items);
+var_dump($items);
 if ($items):
 foreach ($items as $item):
 ?>

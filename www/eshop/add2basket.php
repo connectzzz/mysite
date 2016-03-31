@@ -7,9 +7,9 @@ ob_start();
  $id_item=$_GET['id'];
   $basket[$id_item]=1;
 //var_dump($id_item,$basket);
-
+//echo 'klj';
 
 add2Basket($id_item);
 header("Location: catalog.php");
 
-ob_get_clean();
+ob_end_clean();
